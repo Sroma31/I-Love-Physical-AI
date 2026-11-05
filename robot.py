@@ -3,15 +3,8 @@ from componente import Componente
 
 
 class Robot:
-       def __init__(
-        self,
-        codice: str,
-        modello: str,
-        applicazione: str,
-        peso_massimo_componenti_kg: float,
-        stato: str,
-    ) -> None:
-                self.codice: str = codice
+    def __init__(self,codice: str,modello: str,applicazione: str,peso_massimo_componenti_kg: float,stato: str,) -> None:
+        self.codice: str = codice
         self.modello: str = modello
         self.applicazione: str = applicazione
         self.peso_massimo_componenti_kg: float = peso_massimo_componenti_kg
@@ -20,10 +13,7 @@ class Robot:
 
     def aggiungi_componente(self, componente: Componente) -> None:
        
-        Raises:
-            ValueError: Se il codice del componente è già presente nel robot
-                        o se il peso totale supera il massimo consentito.
-               if any(c.codice == componente.codice for c in self.componenti):
+        if any(c.codice == componente.codice for c in self.componenti):
             raise ValueError(
                 f"Componente con codice '{componente.codice}' già presente nel"
                 f" robot '{self.codice}'."
@@ -46,13 +36,13 @@ class Robot:
                 return sum(c.peso_kg for c in self.componenti)
 
     def cerca_componente(self, codice: str) -> Componente | None:
-                for c in self.componenti:
+        for c in self.componenti:
             if c.codice.lower() == codice.lower():
                 return c
         return None
 
     def rimuovi_componente(self, codice: str) -> Componente | None:
-               comp = self.cerca_componente(codice)
+        comp = self.cerca_componente(codice)
         if comp:
             self.componenti.remove(comp)
             return comp
